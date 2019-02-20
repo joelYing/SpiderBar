@@ -49,7 +49,7 @@ def youzheng():
 
 
 def insertmysql(detailurl, title, time, tsmessage1, tsmessage2):
-    conn = pymysql.connect(host='localhost', port=3306, user='root',passwd='123456', db='sswz')
+    conn = pymysql.connect(host='localhost', port=3306, user='',passwd='', db='sswz')
     cursor = conn.cursor()
 
     insert_sql = "insert into `sswz` (`tousu_url`, `tousu_title`, `tousu_time`, `comsumer_info`, `reply_info`" \
