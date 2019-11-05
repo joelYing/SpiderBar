@@ -1,7 +1,31 @@
 # SpiderBar
-蜘蛛酒吧
+
+高质量爬虫案例聚集，仅供测试，学习，切勿暴力索取!!!
+
+每个文件夹都包含一个爬虫以及一个**raedme**文件
+
+爬虫文件代码顶端加上
+```angular2html
+# author:xxx 19-9-22
+```
+
+
 
 ## 目录
+
+## [Ximalaya](https://github.com/joelYing/SpiderBar/tree/master/Ximalaya) 
+
+喜马拉雅免费音频下载
+
+运行后输入音频对应的ID即可批量下载
+
+### cniao5  
+
+```
+Python爬取菜鸟窝教程视频脚本  
+包含爬取脚本以及批量文件重命名脚本
+```
+
 
 ### cniao5  
 
