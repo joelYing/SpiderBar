@@ -304,9 +304,9 @@ def get_detail(self, title, src, path):
 
 ## 参考
 
-[python模拟喜马拉雅js，全过程突破xm-sign，轻松爬取音频数据](https://blog.csdn.net/steadyhzc/article/details/99708520)
-[python爬取喜马拉雅音频，突破xm-sign校验反爬（爬虫）](https://blog.csdn.net/travel_Capsule/article/details/90312545)
-[爬虫之突破xm-sign校验反爬](http://www.likecs.com/show-65535.html)
-[喜马拉雅音频下载工具](https://github.com/smallmuou/xmlyfetcher)
-[Chrome 开发者工具代码行断点调试](https://www.jianshu.com/p/1ca8db74c526)
+[python模拟喜马拉雅js，全过程突破xm-sign，轻松爬取音频数据](https://blog.csdn.net/steadyhzc/article/details/99708520)  
+[python爬取喜马拉雅音频，突破xm-sign校验反爬（爬虫）](https://blog.csdn.net/travel_Capsule/article/details/90312545)  
+[爬虫之突破xm-sign校验反爬](http://www.likecs.com/show-65535.html)  
+[喜马拉雅音频下载工具](https://github.com/smallmuou/xmlyfetcher)  
+[Chrome 开发者工具代码行断点调试](https://www.jianshu.com/p/1ca8db74c526)  
 [js中~~和 | 的妙用](http://www.fly63.com/article/detial/2802)
