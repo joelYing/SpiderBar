@@ -103,7 +103,7 @@ class XiMa(object):
         print('书名：' + fm_title)
         # 新建有声书ID的文件夹
         fm_path = self.make_dir(xm_fm_id)
-        # 取最大页数
+        # 取最大页数，向上取整
         max_page = math.ceil(fm_count/fm_page_size)
         print(max_page)
         if max_page:
