@@ -36,7 +36,7 @@ class TaoBaoEdu:
         s = requests.session()
         res_headers = {
             # cookie（动态加载视频的cookie） 容易失效，需要在采集前添加
-            'Cookie': 'miid=1160271546849586574; cna=I4twEVCBYiwCAdxzFy+naXZk; tg=0; thw=cn; hng=CN%7Czh-CN%7CCNY%7C156; t=c379c7409659dd137ad549b87449ae16; UM_distinctid=16d3a1638474ba-01f3dc3356a1e2-5b1c3511-100200-16d3a1638484cf; cookie2=19acf53b2c1a15975bc0cff70dce1a2e; v=0; _tb_token_=681ba7be0393; CNZZDATA1272960300=692079039-1572950774-%7C1572950774; unb=2647660185; uc3=lg2=VFC%2FuZ9ayeYq2g%3D%3D&nk2=1CAkEYIyOIBEzX%2BAYVbSmums&id2=UU6lSsTTvJbvbA%3D%3D&vt3=F8dByuay24tF%2FGfkLLQ%3D; csg=1b3b1468; lgc=%5Cu98CE%5Cu4E2D%5Cu4E00%5Cu5339%5Cu72FC12138000; cookie17=UU6lSsTTvJbvbA%3D%3D; dnk=%5Cu98CE%5Cu4E2D%5Cu4E00%5Cu5339%5Cu72FC12138000; skt=c08a312f06492afa; existShop=MTU3Mjk1NDAwNg%3D%3D; uc4=nk4=0%401vEAHSSkoAxmo1uSa9b2EkUzErj2sT6sfVarM4E%3D&id4=0%40U2xo%2BvhOM3yTd6SmZ1uUlLe5xInf; tracknick=%5Cu98CE%5Cu4E2D%5Cu4E00%5Cu5339%5Cu72FC12138000; _cc_=VFC%2FuZ9ajQ%3D%3D; _l_g_=Ug%3D%3D; sg=05f; _nk_=%5Cu98CE%5Cu4E2D%5Cu4E00%5Cu5339%5Cu72FC12138000; cookie1=UtJX3G2wolm77D%2FQUyesMdmZT1O4vEyOkjqydHUVl3U%3D; mt=ci=21_1; uc1=cookie16=URm48syIJ1yk0MX2J7mAAEhTuw%3D%3D&cookie21=V32FPkk%2FgihF%2FS5nr3O5&cookie15=U%2BGCWk%2F75gdr5Q%3D%3D&existShop=false&pas=0&cookie14=UoTbnxEl6OUqjA%3D%3D&tag=8&lng=zh_CN; l=dBS7glRmqcSzq1hUKOfw5uI8L17T4QAb8sPzw4OG2ICP_qCeJ2B5WZdfDh8wCnGV3se6R3zUxM0LBDT8Vy4ehBmvVPAaqFi9_pLeR; isg=BMzMnxKe_d5D_umfmuE-2fsDnSo-rXHIcbgIaCaPg3cIsW27ThGSPsEHUbmJ-agH'
+            'Cookie': ''
         }
         r1 = s.get(self.coursehtml.format(course_id))
         # 解析获取所有课程的ID
