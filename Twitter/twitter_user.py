@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-# author:joel
-# time:2018/10/24 10:28
+# author:joel 19-11-6
 
 
 import re
@@ -20,12 +19,12 @@ class Weibo(object):
         self.next_page = 'https://twitter.com/i/profiles/show/{}/timeline/tweets?' \
                          'include_available_features=1&include_entities=1&max_position={}&' \
                          'reset_error_state=false '
-        self.proxies = {"http": "http://localhost:1080", "https": "http://localhost:1080", }
+        self.proxies = {"http": "http://localhost:1080", "https": "http://localhost:1080"}
 
     @staticmethod
     def tag_tool(text):
         text = re.sub(r'<.*?>|&rlm;|&nbsp;|"  "|\n|\t|\r', '', text)
-        text = re.sub(r'Verified account', ' ',text)
+        text = re.sub(r'Verified account', ' ', text)
         return text
 
     @staticmethod
@@ -44,39 +43,39 @@ class Weibo(object):
 
     def nextpage(self, kw):
         s = requests.session()
-        user_id, name, verify, descript, locate, tweets, following, followers, last_content_id = '', '', '', '', '', \
-                                                                                                 '', '', '', '',
+        uid, name, verifys, description, location, tweets, following, followers, last_content_id = '', '', '', '', '',\
+                                                                                                   '', '', '', '',
         for i in range(1, 3):
             print(i)
             if i == 1:
                 r = s.get(self.info_url.format(kw), proxies=self.proxies)
                 # print(r.text)
-                user_id, name, verify, descript, locate, tweets, following, followers, last_content_id = self.gethtml(r)
-                self.gettweets(r.text, user_id, name, verify, descript, locate, tweets, following, followers)
+                uid, name, verifys, description, location, tweets, following, followers, last_content_id = self.gethtml(r)
+                self.gettweets(r.text, uid, name, verifys, description, location, tweets, following, followers)
             else:
                 r = s.get(self.next_page.format(kw, last_content_id), proxies=self.proxies)
                 text = self.js_tool(r.text)
-                self.gettweets(text, user_id, name, verify, descript, locate, tweets, following, followers)
+                self.gettweets(text, uid, name, verifys, description, location, tweets, following, followers)
 
     def gethtml(self, r):
         card_infos = re.findall(r'<div class="ProfileHeaderCard">(.*?)<div class="PhotoRail">', r.text, re.S)
         tffl_infos = re.findall(r'<div class="Grid-cell u-size2of3 u-lg-size3of4">\s*?<div '
                                 r'class="ProfileCanopy-nav">(.*?)</div>', r.text, re.S)
-        verify, descript, locate, tweets, following, followers = '', '', '', '', '', ''
+        verifys, description, location, tweets, following, followers = '', '', '', '', '', ''
         name = re.findall(r'<h1 class="ProfileHeaderCard-name">.*?<a href="/(.*?)".*?>', card_infos[0], re.S)[0]
         verified = re.findall(r'<span class="Icon Icon--verified"><span '
                               r'class="u-hiddenVisually">(.*?)</span></span>', card_infos[0], re.S)
         if verified:
-            verify = verified[0]
-        description = re.findall(r'<p class="ProfileHeaderCard-bio u-dir" dir="ltr">(.*?)</p>', card_infos[0], re.S)
-        if description:
-            descript = self.tag_tool(description[0])
-        location = re.findall(r'<span class="ProfileHeaderCard-locationText u-dir" dir="ltr">(.*?)</span>',
-                              card_infos[0], re.S)
-        if location:
-            locate = self.space_tool(location[0])
+            verifys = verified[0]
+        bio = re.findall(r'<p class="ProfileHeaderCard-bio u-dir" dir="ltr">(.*?)</p>', card_infos[0], re.S)
+        if bio:
+            description = self.tag_tool(bio[0])
+        location_text = re.findall(r'<span class="ProfileHeaderCard-locationText u-dir" dir="ltr">(.*?)</span>',
+                                   card_infos[0], re.S)
+        if location_text:
+            location = self.space_tool(location_text[0])
 
-        user_id = re.findall(r'<div class="ProfileNav" role="navigation" data-user-id="(.*?)">', tffl_infos[0], re.S)[0]
+        uid = re.findall(r'<div class="ProfileNav" role="navigation" data-user-id="(.*?)">', tffl_infos[0], re.S)[0]
         t = re.findall(r'<li class="ProfileNav-item ProfileNav-item--tweets is-active".*?<span '
                        r'class="ProfileNav-value"\s*?data-count=(.*?) data-is-compact=".*?">', tffl_infos[0], re.S)
         if t:
@@ -92,9 +91,9 @@ class Weibo(object):
         content_ids = re.findall(r'<li class="js-stream-item stream-item stream-item.*?>.*?'
                                  r'data-tweet-id="(.*?)".*?<div class="stream-item-header">', r.text, re.S)
         last_content_id = content_ids[len(content_ids) - 1]
-        return user_id, name, verify, descript, locate, tweets, following, followers, last_content_id
+        return uid, name, verifys, description, location, tweets, following, followers, last_content_id
 
-    def gettweets(self, text, user_id, name, verify, descript, locate, tweets, following, followers):
+    def gettweets(self, text, uid, name, verifys, description, location, tweets, following, followers):
         user_tweets = re.findall(r'li class="js-stream-item stream-item stream-item.*?>.*?'
                                  r'data-tweet-id="(.*?)".*?<div class="stream-item-header">(.*?)<small class="time">'
                                  r'.*?<a.*?class="tweet-timestamp js-permalink js-nav js-tooltip".*?title="(.*?)".*?>'
@@ -103,28 +102,28 @@ class Weibo(object):
                                  r'.*?</li>', text, re.S)
         for user_tweet in user_tweets:
             content_id = user_tweet[0]
-            laiyuan = self.space_tool(user_tweet[1])
-            createtime = user_tweet[2]
+            source = self.space_tool(user_tweet[1])
+            pub_time = user_tweet[2]
             content = self.tag_tool(user_tweet[3])
             nums = re.findall(r'<span class="ProfileTweet-actionCount".*?data-tweet-stat-count="(.*?)">',
                               user_tweet[4], re.S)
             replies, retweets, likes = nums[0], nums[1], nums[2]
-            print(user_id, name, verify, descript, locate, tweets, following, followers,
-                  content_id, laiyuan, createtime, content, replies, retweets, likes)
-            # self.insertmysql(user_id, name, verify, descript, locate, tweets, following, followers,
-            #                  content_id, laiyuan, createtime, content, replies, retweets, likes)
+            # print(uid, name, verifys, description, location, tweets, following, followers,
+            #         content_id, source, pub_time, content, replies, retweets, likes)
+            self.insertmysql(uid, name, verifys, description, location, tweets, following, followers,
+                                content_id, source, pub_time, content, replies, retweets, likes)
 
     @staticmethod
-    def insertmysql(user_id, name, verify, descript, locate, tweets, following, followers,
-                    content_id, laiyuan, createtime, content, replies, retweets, likes):
-        conn = pymysql.connect(host='localhost', port=3306, user='', passwd='', db='')
+    def insertmysql(uid, name, verifys, description, location, tweets, following, followers,
+                    content_id, source, pub_time, content, replies, retweets, likes):
+        conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='12138', db='twitter')
         cursor = conn.cursor()
 
-        insert_sql = "insert into `twitter_user` (`uid`, `name`, `veritys`, `description`, `location`, `tweets`" \
+        insert_sql = "insert into `twitter_user_tweet` (`uid`, `name`, `veritys`, `description`, `location`, `tweets`" \
                      ", `following`, `followers`,`content_id`, `source`, `content`, `replies`, `retweets`, " \
-                     "`likes`, `time`)values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'," \
-                     "'%s','%s')" % (user_id, name, verify, descript, locate, tweets, following, followers,content_id,
-                                     laiyuan, content, replies, retweets, likes, createtime)
+                     "`likes`, `pub_time`)values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s'," \
+                     "'%s','%s')" % (uid, name, verifys, description, location, tweets, following, followers, content_id,
+                                     source, content, replies, retweets, likes, pub_time)
         # select_sql = "select `content_id` from `twitter_user` where `content_id`='%s'" % content_id
 
         try:
@@ -151,4 +150,4 @@ class Weibo(object):
 
 if __name__ == '__main__':
     wb = Weibo()
-    wb.nextpage('JFla_Rabbits')
+    wb.nextpage('jfla')
