@@ -1,5 +1,7 @@
 # SpiderBar
 
+[![](https://img.shields.io/badge/author-joel-orange)](https://github.com/joelYing)
+
 高质量爬虫案例聚集，仅供测试，学习，切勿暴力索取!!!
 
 少点套路，多点真诚，仍有不足，欢迎交流~~
