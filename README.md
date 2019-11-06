@@ -82,3 +82,10 @@ Tag：区别下载、分析链接
 爬取新浪旗下黑猫投诉平台中，圆通速递投诉信息，保存于MySQL数据库
 
 Tag：保存文字、MySQL、Unicode解析
+
+## [Twitter](https://github.com/joelYing/SpiderBar/tree/master/Twitter) 
+
+通过代理访问twitter，解析网页源码获取推文信息，构造content_id找到下一页推文数据  
+通过大量的正则匹配解析推文信息，但是翻墙不稳定，需要构造一个合理且大量的代理服务器群
+
+Tag：代理翻墙、正则、twitter
