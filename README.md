@@ -53,64 +53,17 @@ self.path2 = 'D:\\Python\\PycharmProject\\FinalTaoBaoEdu'
 ```
 4、运行程序，输入课程id也就是输入102063，即可
 
-### cniao5  
+## [Cniao5](https://github.com/joelYing/SpiderBar/tree/master/Cniao5) 
 
-```
-Python爬取菜鸟窝教程视频脚本  
-包含爬取脚本以及批量文件重命名脚本
-```
+代码用于下载菜鸟窝视频教程
 
-
-### cniao5  
-
+1、首先找到课程首页链接，如[https://www.cniao5.com/course/lessons/10195](https://www.cniao5.com/course/lessons/10195)  
+2、在代码中修改将要保存下载内容的路径
+```python
+self.file_path1 = 'D:\\Python\\PycharmProject\\Cniao5'
+self.file_path2 = 'D:\\Python\\PycharmProject\\FinalCniao5'
 ```
-Python爬取菜鸟窝教程视频脚本  
-包含爬取脚本以及批量文件重命名脚本
-```
+4、运行程序，输入课程的ID即可，如输入：10195
 
-### electronic_business_site  
+区别下载、分析链接
 
-```
-Python爬取各电商网站实战记录  
-爬取京东华为旗舰店手机数据，包含折扣价、价格、评论数等，下同  
-爬取京东单反数据  
-爬取苏宁华为手机数据  
-爬取天猫华为手机数据， 还包含销量  
-以及 request headers 处理工具
-```
-
-### utils  
-
-```
-大量 user-agent 以及 headerstool  
-```
-
-### wechat  
-
-```
-Python爬取微信公众号永久链接  
-```
-
-### YuanTong_tousu  
-
-```
-爬取圆通投诉信息（利用正则+xpath）  
-```
-
-### twitter_user  
-
-```
-Twitter用户tweet采集，需要翻墙（ss）  
-```
-
-### taobaoedu
-
-```
-Python3 爬取淘宝教育指定课程视频，前提是该视频免费，或已购买
-```
-
-### youzheng
-
-```
-国家邮政局申诉网站-案例选登（18年投诉信息）
-```
