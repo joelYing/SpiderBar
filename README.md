@@ -2,10 +2,12 @@
 
 高质量爬虫案例聚集，仅供测试，学习，切勿暴力索取!!!
 
+少点套路，多点真诚，仍有不足，欢迎交流~~
+
 每个文件夹都包含一个爬虫以及一个**raedme**文件
 
-爬虫文件代码顶端加上
-```angular2html
+爬虫文件代码顶端加上author及日期
+```
 # author:xxx 19-9-22
 ```
 
@@ -16,6 +18,8 @@
 喜马拉雅免费音频下载
 
 运行后输入音频对应的ID即可批量下载
+
+Tag：JS破解、音频下载
 
 ## [KoKoJia](https://github.com/joelYing/SpiderBar/tree/master/KoKoJia) 
 
@@ -35,6 +39,8 @@ self.path2 = 'D:\\Python\\PycharmProject\\FinalKoKoJia'
 ```
 4、运行程序，输入`course-3643`即可
 
+Tag：m3u8解密、视频下载
+
 ## [TaoBaoEdu](https://github.com/joelYing/SpiderBar/tree/master/TaoBaoEdu) 
 
 代码用于下载已购买的淘宝教育视频教程
@@ -53,6 +59,8 @@ self.path2 = 'D:\\Python\\PycharmProject\\FinalTaoBaoEdu'
 ```
 4、运行程序，输入课程id也就是输入102063，即可
 
+Tag：m3u8、视频下载
+
 ## [Cniao5](https://github.com/joelYing/SpiderBar/tree/master/Cniao5) 
 
 代码用于下载菜鸟窝视频教程
@@ -65,5 +73,10 @@ self.file_path2 = 'D:\\Python\\PycharmProject\\FinalCniao5'
 ```
 4、运行程序，输入课程的ID即可，如输入：10195
 
-区别下载、分析链接
+Tag：区别下载、分析链接
 
+## [SinaTouSu](https://github.com/joelYing/SpiderBar/tree/master/SinaTouSu) 
+
+爬取新浪旗下黑猫投诉平台中，圆通速递投诉信息，保存于MySQL数据库
+
+Tag：保存文字、MySQL、Unicode解析
