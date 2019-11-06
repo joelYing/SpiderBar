@@ -1,6 +1,6 @@
 # SpiderBar
 
-[![](https://img.shields.io/badge/author-joel-orange)](https://github.com/joelYing)
+[![](https://img.shields.io/badge/author-joel-orange)](https://github.com/joelYing) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 高质量爬虫案例聚集，仅供测试，学习，切勿暴力索取!!!
 
