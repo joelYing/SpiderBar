@@ -116,7 +116,7 @@ class Weibo(object):
     @staticmethod
     def insertmysql(uid, name, verifys, description, location, tweets, following, followers,
                     content_id, source, pub_time, content, replies, retweets, likes):
-        conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='12138', db='twitter')
+        conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='twitter')
         cursor = conn.cursor()
 
         insert_sql = "insert into `twitter_user_tweet` (`uid`, `name`, `veritys`, `description`, `location`, `tweets`" \
