@@ -89,3 +89,9 @@ Tag：保存文字、MySQL、Unicode解析
 通过大量的正则匹配解析推文信息，但是翻墙不稳定，需要构造一个合理且大量的代理服务器群
 
 Tag：代理翻墙、正则、twitter
+
+## [E-business_Site](https://github.com/joelYing/SpiderBar/tree/master/E-business_Site) 
+
+电商网站数据采集，包括京东、苏宁、天猫
+
+Tag：API、电商网站
