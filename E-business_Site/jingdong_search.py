@@ -1,9 +1,10 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-# author:joel 18-6-5
+# author:joel 19-11-9
 
 """
 京东：一页 60 分两次加载，每次30
+在用format格式化url时，若URL中也有 { } 这时则format 中以 {{ }} 两个大括号来转义
 """
 
 import re
@@ -15,11 +16,6 @@ from urllib import parse
 
 class JingDong(object):
     def __init__(self):
-        """
-        修改 comment_num 类型
-        之前只需添加 referer 现在还需添加 ua
-        在用format格式化url时，若URL中也有 { } 这时则format 中以 {{ }} 两个大括号来转义
-        """
         # 商品页面
         self.product_url = 'https://item.jd.com/{}.html'
         # 关键词搜索api
@@ -35,7 +31,7 @@ class JingDong(object):
         self.header = {'referer': '', 'user-agent': self.user_agent}
         # 评论数
         self.good_url = 'https://club.jd.com/comment/productCommentSummaries.action?referenceIds={}'
-        # 评论详情 访问需带上 referer，最大10条 https://item.paipai.com/40990434065.html https://item.jd.com/53536922317.html
+        # 评论详情 访问需带上 referer，最大10条 https://item.paipai.com/40990434065.html 或 https://item.jd.com/53536922317.html
         self.comments_type = 'https://sclub.jd.com/comment/productPageComments.action?productId={}' \
                              '&score=0&sortType=5&page=0&pageSize=10'
         # cat 在商品主页源代码中有，直接搜 'cat:'
@@ -122,24 +118,23 @@ class JingDong(object):
                 referers_s = 30*(int(page) - 1) + 1
                 self.header['referer'] = self.referer.format(keyword, page, referers_s)
                 r = requests.get(self.single_page_url.format(keyword, page, referers_s), headers=self.header)
-                self.get_goods_info(s, page, r)
             else:
                 referers_s, double_s = 30 * (int(page) - 2) + 1, 30 * (int(page) - 1) + 1
                 self.header['referer'] = self.referer.format(keyword, page - 1, referers_s)
                 r = s.get(self.double_page_url.format(keyword, page, double_s), headers=self.header)
-                self.get_goods_info(s, page, r)
+            self.get_goods_info(s, page, r)
             time.sleep(1)
 
     @staticmethod
     def insertmysql(info_id, info_url, price, refprice, name, comment_num, comment_types):
-        conn_insert = pymysql.connect(host='localhost', port=3306, user='root', password='12138', db='jingdong')
+        conn_insert = pymysql.connect(host='localhost', port=3306, user='root', password='', db='jingdong')
         cursor_ins = conn_insert.cursor()
 
-        insert_sql = "insert into `jd_huawei` (`pid`, `url`, `price`, `ref_price`, `name`, `comment_num`, " \
+        insert_sql = "insert into `jd_search` (`pid`, `url`, `price`, `ref_price`, `name`, `comment_num`, " \
                      "`comment_type`)values('%s','%s','%s','%s','%s','%s','%s')" % \
                      (info_id, info_url, price, refprice, name, comment_num, comment_types)
         try:
-            select_sql = "select `pid` from `jd_huawei` where `pid`='%s'" % info_id
+            select_sql = "select `pid` from `jd_search` where `pid`='%s'" % info_id
             response = cursor_ins.execute(select_sql)
             conn_insert.commit()
             if response == 1:
