@@ -35,7 +35,7 @@ class JingDong(object):
         self.comments_type = 'https://sclub.jd.com/comment/productPageComments.action?productId={}' \
                              '&score=0&sortType=5&page=0&pageSize=10'
         # cat 在商品主页源代码中有，直接搜 'cat:'
-        self.phone_price = 'https://c0.3.cn/stock?skuId={}&area=15_1158_46343_0&cat=13765,13767,13768'
+        self.goods_price_api = 'https://c0.3.cn/stock?skuId={}&area=15_1158_46343_0&cat=13765,13767,13768'
 
     @staticmethod
     def name_tool(name):
@@ -61,7 +61,7 @@ class JingDong(object):
         return comment_num, comment_types
 
     def get_more_infos(self, s, pid, url, name):
-        r_refprice = s.get(self.phone_price.format(pid))
+        r_refprice = s.get(self.goods_price_api.format(pid))
         ref_prices = re.findall(r'"jdPrice":{.*?"op":"(.*?)".*?"p":"(.*?)".*?}', r_refprice.text, re.S)
         price, ref_price = '', ''
         if ref_prices:
