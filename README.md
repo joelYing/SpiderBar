@@ -15,83 +15,31 @@
 
 ## 目录
 
-## [Ximalaya](https://github.com/joelYing/SpiderBar/tree/master/Ximalaya) 
+#### [Ximalaya](https://github.com/joelYing/SpiderBar/tree/master/Ximalaya) 
 
 喜马拉雅免费音频下载
 
-运行后输入音频对应的ID即可批量下载
-
-Tag：JS破解、音频下载
-
-## [KoKoJia](https://github.com/joelYing/SpiderBar/tree/master/KoKoJia) 
+#### [KoKoJia](https://github.com/joelYing/SpiderBar/tree/master/KoKoJia) 
 
 代码用于下载已购买的课课家视频教程
 
-请注意，前提是已经购买该课程
-
-1、首先找到课程首页链接，如[http://www.kokojia.com/course-3643.html](http://www.kokojia.com/course-3643.html)  
-2、点击课程中任意视频，打开开发者工具，刷新页面，获取类似如下的cookie，可以直接把整个cookie复制，填入代码中
-```
-Hm_lvt_f530f7624f8a05758b78e413af3d70ca=1572921480; ****** Hm_lpvt_69a9e7b64ab4ee86e58df7fde25d232a=1572922143; issldd=y
-```
-3、在代码中修改将要保存下载内容的路径
-```python
-self.path1 = 'D:\\Python\\PycharmProject\\KoKoJia'
-self.path2 = 'D:\\Python\\PycharmProject\\FinalKoKoJia'
-```
-4、运行程序，输入`course-3643`即可
-
-Tag：m3u8解密、视频下载
-
-## [TaoBaoEdu](https://github.com/joelYing/SpiderBar/tree/master/TaoBaoEdu) 
+#### [TaoBaoEdu](https://github.com/joelYing/SpiderBar/tree/master/TaoBaoEdu) 
 
 代码用于下载已购买的淘宝教育视频教程
 
-请注意，前提是已经购买该课程
-
-1、首先找到课程首页链接，如[http://v.xue.taobao.com/learn.htm?courseId=102063](http://v.xue.taobao.com/learn.htm?courseId=102063)  
-2、点击课程中任意视频，打开开发者工具，刷新页面，获取课程首页连接的类似如下的cookie，可以直接把整个cookie复制，填入代码中
-```
-miid=1160271546849586574; cna=I******HIcbgIaCaPg3cIsW27ThGSPsEHUbmJ-agH
-```
-3、在代码中修改将要保存下载内容的路径
-```python
-self.path1 = 'D:\\Python\\PycharmProject\\TaoBaoEdu'
-self.path2 = 'D:\\Python\\PycharmProject\\FinalTaoBaoEdu'
-```
-4、运行程序，输入课程id也就是输入102063，即可
-
-Tag：m3u8、视频下载
-
-## [Cniao5](https://github.com/joelYing/SpiderBar/tree/master/Cniao5) 
+#### [Cniao5](https://github.com/joelYing/SpiderBar/tree/master/Cniao5) 
 
 代码用于下载菜鸟窝视频教程
 
-1、首先找到课程首页链接，如[https://www.cniao5.com/course/lessons/10195](https://www.cniao5.com/course/lessons/10195)  
-2、在代码中修改将要保存下载内容的路径
-```python
-self.file_path1 = 'D:\\Python\\PycharmProject\\Cniao5'
-self.file_path2 = 'D:\\Python\\PycharmProject\\FinalCniao5'
-```
-4、运行程序，输入课程的ID即可，如输入：10195
-
-Tag：区别下载、分析链接
-
-## [SinaTouSu](https://github.com/joelYing/SpiderBar/tree/master/SinaTouSu) 
+#### [SinaTouSu](https://github.com/joelYing/SpiderBar/tree/master/SinaTouSu) 
 
 爬取新浪旗下黑猫投诉平台中，圆通速递投诉信息，保存于MySQL数据库
 
-Tag：保存文字、MySQL、Unicode解析
-
-## [Twitter](https://github.com/joelYing/SpiderBar/tree/master/Twitter) 
+#### [Twitter](https://github.com/joelYing/SpiderBar/tree/master/Twitter) 
 
 通过代理访问twitter，解析网页源码获取推文信息，构造content_id找到下一页推文数据  
-通过大量的正则匹配解析推文信息，但是翻墙不稳定，需要构造一个合理且大量的代理服务器群
+通过大量的正则匹配解析推文信息
 
-Tag：代理翻墙、正则、twitter
-
-## [E-business_Site](https://github.com/joelYing/SpiderBar/tree/master/E-business_Site) 
+#### [E-business_Site](https://github.com/joelYing/SpiderBar/tree/master/E-business_Site) 
 
 电商网站数据采集，包括京东、苏宁、天猫
-
-Tag：API、电商网站
