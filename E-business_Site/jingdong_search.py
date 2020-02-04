@@ -35,7 +35,8 @@ class JingDong(object):
         self.comments_type = 'https://sclub.jd.com/comment/productPageComments.action?productId={}' \
                              '&score=0&sortType=5&page=0&pageSize=10'
         # cat 在商品主页源代码中有，直接搜 'cat:'
-        self.goods_price_api = 'https://c0.3.cn/stock?skuId={}&area=15_1158_46343_0&cat=13765,13767,13768'
+        self.goods_price_api = 'https://c0.3.cn/stock?skuId={}&area=15_1158_46343_0' \
+                               '&venderId={}&cat={}'
 
     @staticmethod
     def name_tool(name):
@@ -61,17 +62,22 @@ class JingDong(object):
         return comment_num, comment_types
 
     def get_more_infos(self, s, pid, url, name):
-        r_refprice = s.get(self.goods_price_api.format(pid))
-        ref_prices = re.findall(r'"jdPrice":{.*?"op":"(.*?)".*?"p":"(.*?)".*?}', r_refprice.text, re.S)
-        price, ref_price = '', ''
-        if ref_prices:
-            ref_price = ref_prices[0][0]
-            price = ref_prices[0][1]
-            # if ref_prices[0][0] == ref_prices[0][1]:
-            #     price = ''
-            #     ref_price = ref_prices[0][1]
-        comment_num, comment_types = self.get_comment(s, pid)
-        self.insertmysql(pid, url, price, ref_price, name, comment_num, comment_types)
+        r_formats = s.get(url)
+        cat_vid = re.findall(r'cat: \[(.*?)],.*?venderId:(.*?),', r_formats.text, re.S)
+        if cat_vid[0]:
+            cat, vid = cat_vid[0][0], cat_vid[0][1]
+            r_refprice = s.get(self.goods_price_api.format(pid, vid, cat))
+            ref_prices = re.findall(r'"jdPrice":{.*?"p":"(.*?)".*?"op":"(.*?)".*?}', r_refprice.text, re.S)
+            price, ref_price = '', ''
+            if ref_prices:
+                ref_price = ref_prices[0][0]
+                price = ref_prices[0][1]
+                # if ref_prices[0][0] == ref_prices[0][1]:
+                #     price = ''
+                #     ref_price = ref_prices[0][1]
+            comment_num, comment_types = self.get_comment(s, pid)
+            # print(pid, url, price, ref_price, name, comment_num, comment_types)
+            self.insertmysql(pid, url, price, ref_price, name, comment_num, comment_types)
 
     def get_goods_info(self, s, page, r):
         print(page)
