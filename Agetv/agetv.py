@@ -70,7 +70,7 @@ class AgeSpider:
 
     @staticmethod
     def insert(name, detail_url, pan_url, pan_title, pan_psw, pan_real_url, age_type):
-        database = pymysql.connect(host='localhost', port=3306, user='root', passwd='12138', db='agetv')
+        database = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='agetv')
         cursor = database.cursor()
         try:
             select_sql = "select pan_real_url from agepan_click where pan_real_url='%s'" % pan_real_url
